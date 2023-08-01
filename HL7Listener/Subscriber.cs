@@ -60,10 +60,12 @@ namespace HL7Listener
                                 tempData = Encoding.UTF8.GetString(buffer, 4, count - 12);
                                 // Do what you want with the received message
                                 response = HandleMessage(tempData);
+                                
 
                                 // Send response
                                 receiver.Send(Encoding.UTF8.GetBytes(response));
                                 Console.WriteLine("Acknowledgment sent.");
+                                receiver.Close();
                                 break;
                             }
                         }
